@@ -1,0 +1,134 @@
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa en Openlayers</title>
+<link rel="icon" type="image/x-icon" href="https://seeklogo.com/images/U/universidad-andina-simon-bolivar-logo-DE4494615C-seeklogo.com.png">
+
+<link rel="stylesheet" href ="https://openlayers.org/en/v4.4.1/css/ol.css" type="text/css">
+<script src="https://openlayers.org/en/v4.4.1/build/ol.js" type="text/javascript"></script>
+<style> 
+
+
+* {
+	box-sizing: border-box
+}
+
+body {
+	margin: 0;
+	padding:0;
+}
+.map{
+	height: 100vh;
+	width: 100vw;	
+}
+body{
+	Background-color:LightSkyBlue;
+}
+h1{
+	color: red;
+	text-align: center;	
+}
+
+h2{
+	color: blue;
+	text-align: center;	
+}
+
+h3{
+	color: black;
+}
+
+p{
+	font-family: verdana;
+	font-size: 20px;
+	}
+#boton{
+	color:red
+	}
+
+img {
+
+max-width:1400px;
+
+objeto.height:auto;
+
+}
+
+</style>
+
+
+
+</head>
+<body>
+
+<script>
+
+function visualizarImbabura(){
+
+var enlace =  "https://geoserver.idesinde.com:8443/geoserver/QUILUMBA2/wms?service=WMS&version=1.1.0&request=GetMap&layers=QUILUMBA2%3Aatractivos_imbabura,QUILUMBA2%3Adivisionpolitica_conali_a,QUILUMBA2%3Avias_interparroquiales_l&bbox=720694.5620999997%2C1.00134015429E7%2C855033.6667999998%2C1.00969198264E7&width=700&height=500&srs=EPSG%3A32717&styles=&format=image/png"
+
+document.getElementById("visual").href= enlace
+document.getElementById("visual").src= enlace
+
+}
+
+
+function descargarcapas() {
+
+var capaturistica = document.getElementById("capasImbabura").value
+var formato = document.getElementById("formatos").value
+
+var enlacereg = "https://geoserver.idesinde.com:8443/geoserver/QUILUMBA2/ows?service=WFS&version=1.0.0&request=GetFeature&typeName="+capaturistica+"&maxFeatures=50&outputFormat="+formato
+
+document.getElementById("descargareg").href= enlacereg
+}
+
+
+</script>
+
+
+
+
+
+<h2> Modulo Arquitectura Web en Servicios</h2>
+<h2> Tarea 1: Julio Quilumba</h2>
+<h1>SITIOS TURISTICOS DE IMBABURA</h1>
+
+
+<h3> 1. Visualización de Mapa</h2>
+<button type="button" onclick ="visualizarImbabura()" style="width:400;height:100; text-size:100px">Visualizar información </button>
+<br><br>
+
+<img id="visual" src=""/>
+<br>
+<h3> 2. Descarga de información</h2>
+
+
+
+<select id="capasImbabura" onchange="descargarcapas()" >
+<option value="QUILUMBA2%3Aatractivos_imbabura">Atractivos Imbabura
+<option value="QUILUMBA2%3Adivisionpolitica_conali_a">División Política
+<option value="QUILUMBA2%3Avias_interparroquiales_l">Vias Interparroquiales
+
+</select>
+<br><br>
+<select id="formatos" onchange="descargarcapas()" >
+<option value="shape-zip">Shapefile
+<option value="GML2">GML
+<option value="KML">KML
+
+</select>
+
+
+
+<br><br><br>
+<a id="descargareg" href="" >Descargue aquí</a>
+<br>
+
+
+<br><br>
+
+</body>
+</html>
